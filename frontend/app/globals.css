@@ -1,3 +1,134 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :root {
+    --font-inter: var(--font-inter);
+    --font-noto-sans-jp: var(--font-noto-sans-jp);
+  }
+}
+
+@layer components {
+  .container-custom {
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* Typography styles manually added since plugin install failed */
+  .prose h1 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    color: rgb(15 23 42);
+  }
+  .prose h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    color: rgb(30 41 59);
+    border-bottom: 1px solid rgb(243 244 246);
+    padding-bottom: 0.5rem;
+  }
+  .prose h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+    color: rgb(30 41 59);
+  }
+  .prose p {
+    margin-bottom: 1.5rem;
+    line-height: 2rem;
+    color: rgb(71 85 105);
+  }
+  .prose ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: rgb(71 85 105);
+  }
+  .prose ol {
+    list-style-type: decimal;
+    list-style-position: outside;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: rgb(71 85 105);
+  }
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+  .prose blockquote {
+    border-left: 4px solid rgb(191 219 254);
+    padding-left: 1rem;
+    font-style: italic;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: rgb(51 65 85);
+    background-color: rgb(249 250 251);
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 0 0.25rem 0.25rem 0;
+  }
+  .prose code {
+    background-color: rgb(243 244 246);
+    color: rgb(219 39 119);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+  }
+  .prose pre {
+    background-color: rgb(15 23 42);
+    color: rgb(248 250 252);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+  }
+  .prose pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+  }
+  .prose a {
+    color: rgb(7 89 133);
+    text-decoration: underline;
+    text-decoration-color: rgb(147 197 253);
+    text-underline-offset: 2px;
+    transition-property: color, text-decoration-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+  .prose a:hover {
+    text-decoration-color: rgb(7 89 133);
+  }
+  .prose img {
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    height: auto;
+  }
+}
