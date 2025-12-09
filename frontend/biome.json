@@ -43,14 +43,6 @@
     }
   },
   "files": {
-    "include": ["frontend/**/*.{js,jsx,ts,tsx,json,css}", "*.{js,json}"],
-    "ignore": [
-      "frontend/node_modules",
-      "frontend/.next",
-      "frontend/out",
-      "node_modules",
-      "**/*.lock",
-      "**/*.lockb"
-    ]
+    "ignore": ["node_modules", ".next", "out", "**/*.lock", "**/*.lockb"]
   }
 }

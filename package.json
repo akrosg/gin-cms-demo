@@ -11,9 +11,9 @@
     "dev:backend": "cd backend && go run main.go",
     "build": "cd frontend && bun run build",
     "start": "cd frontend && bun run start",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
-    "format": "biome format --write ."
+    "lint": "cd frontend && biome check .",
+    "lint:fix": "cd frontend && biome check --write .",
+    "format": "cd frontend && biome format --write ."
   },
   "devDependencies": {
     "concurrently": "9.2.1"
