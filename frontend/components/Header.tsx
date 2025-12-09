@@ -9,14 +9,14 @@ export default function Header() {
             <span className='text-xl font-bold tracking-tight text-slate-900'>Gin CMS</span>
           </Link>
           <nav className='hidden md:flex gap-6'>
-            <Link 
-              href='/' 
+            <Link
+              href='/'
               className='text-sm font-medium text-slate-600 transition-colors hover:text-primary-600'
             >
               ホーム
             </Link>
-            <Link 
-              href='/admin' 
+            <Link
+              href='/admin'
               className='text-sm font-medium text-slate-600 transition-colors hover:text-primary-600'
             >
               管理画面
@@ -30,4 +30,3 @@ export default function Header() {
     </header>
   );
 }
-
