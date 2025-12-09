@@ -1,7 +1,7 @@
+import PostDetail from "@/components/PostDetail";
+import { getPost, getPosts } from "@/lib/api";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { getPost, getPosts } from "@/lib/api";
-import PostDetail from "@/components/PostDetail";
 
 // ISR: 30秒ごとに再生成
 export const revalidate = 30;

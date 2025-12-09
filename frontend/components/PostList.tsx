@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { getPosts } from "@/lib/api";
+import Link from "next/link";
 
 export default async function PostList() {
   const posts = await getPosts();

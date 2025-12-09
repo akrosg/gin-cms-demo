@@ -1,6 +1,6 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
 import { getPost } from "@/lib/api";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export default async function PostDetail({ slug }: { slug: string }) {
   const post = await getPost(slug);

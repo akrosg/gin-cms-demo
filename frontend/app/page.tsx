@@ -1,7 +1,7 @@
+import PostList from "@/components/PostList";
+import { getPosts } from "@/lib/api";
 import Link from "next/link";
 import { Suspense } from "react";
-import { getPosts } from "@/lib/api";
-import PostList from "@/components/PostList";
 
 // ISR: 60秒ごとに再生成
 export const revalidate = 60;

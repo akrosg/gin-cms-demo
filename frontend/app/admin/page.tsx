@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Post, getPosts, createPost, updatePost, deletePost } from "@/lib/api";
+import { type Post, createPost, deletePost, getPosts, updatePost } from "@/lib/api";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function AdminPage() {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -89,9 +89,12 @@ export default function AdminPage() {
             {editingPost ? "記事を編集" : "新規記事を作成"}
           </h3>
           <div className="mb-4">
-            <label className="block mb-2 font-medium">タイトル</label>
+            <label htmlFor="title" className="block mb-2 font-medium">
+              タイトル
+            </label>
             <input
               type="text"
+              id="title"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
               required
@@ -99,8 +102,11 @@ export default function AdminPage() {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 font-medium">Slug</label>
+            <label htmlFor="slug" className="block mb-2 font-medium">
+              Slug
+            </label>
             <input
+              id="slug"
               type="text"
               value={formData.slug}
               onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
@@ -109,8 +115,11 @@ export default function AdminPage() {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 font-medium">コンテンツ</label>
+            <label htmlFor="content" className="block mb-2 font-medium">
+              コンテンツ
+            </label>
             <textarea
+              id="content"
               value={formData.content}
               onChange={(e) => setFormData({ ...formData, content: e.target.value })}
               required
@@ -157,12 +166,14 @@ export default function AdminPage() {
                   </div>
                   <div className="mt-4 flex gap-2">
                     <button
+                      type="button"
                       onClick={() => handleEdit(post)}
                       className="px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors cursor-pointer"
                     >
                       編集
                     </button>
                     <button
+                      type="button"
                       onClick={() => handleDelete(post.id)}
                       className="px-3 py-1 bg-red-600 text-white text-sm rounded-md hover:bg-red-700 transition-colors cursor-pointer"
                     >
