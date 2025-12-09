@@ -1,27 +1,27 @@
-import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
-import { getPost, getPosts } from '@/lib/api'
-import PostDetail from '@/components/PostDetail'
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import { getPost, getPosts } from "@/lib/api";
+import PostDetail from "@/components/PostDetail";
 
 // ISR: 30秒ごとに再生成
-export const revalidate = 30
+export const revalidate = 30;
 
 export async function generateStaticParams() {
   try {
-    const posts = await getPosts()
+    const posts = await getPosts();
     return posts.map((post) => ({
       slug: post.slug,
-    }))
+    }));
   } catch (error) {
-    console.error('Failed to generate static params:', error)
-    return []
+    console.error("Failed to generate static params:", error);
+    return [];
   }
 }
 
 export default async function PostPage({
   params,
 }: {
-  params: { slug: string }
+  params: { slug: string };
 }) {
   return (
     <div className="max-w-6xl mx-auto px-8 py-8">
@@ -39,15 +39,12 @@ export default async function PostPage({
 
       <main>
         {/* PPR: Suspenseで動的部分を分離 */}
-        <Suspense fallback={
-          <div className="text-center py-8 text-gray-600">
-            記事を読み込み中...
-          </div>
-        }>
+        <Suspense
+          fallback={<div className="text-center py-8 text-gray-600">記事を読み込み中...</div>}
+        >
           <PostDetail slug={params.slug} />
         </Suspense>
       </main>
     </div>
-  )
+  );
 }
-

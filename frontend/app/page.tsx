@@ -1,10 +1,10 @@
-import Link from 'next/link'
-import { Suspense } from 'react'
-import { getPosts } from '@/lib/api'
-import PostList from '@/components/PostList'
+import Link from "next/link";
+import { Suspense } from "react";
+import { getPosts } from "@/lib/api";
+import PostList from "@/components/PostList";
 
 // ISR: 60秒ごとに再生成
-export const revalidate = 60
+export const revalidate = 60;
 
 export default async function HomePage() {
   return (
@@ -22,20 +22,15 @@ export default async function HomePage() {
       </header>
 
       <main>
-        <h2 className="mb-6 text-2xl">
-          記事一覧（ISR: 60秒ごとに再生成）
-        </h2>
-        
+        <h2 className="mb-6 text-2xl">記事一覧（ISR: 60秒ごとに再生成）</h2>
+
         {/* PPR: Suspenseで動的部分を分離 */}
-        <Suspense fallback={
-          <div className="text-center py-8 text-gray-600">
-            記事を読み込み中...
-          </div>
-        }>
+        <Suspense
+          fallback={<div className="text-center py-8 text-gray-600">記事を読み込み中...</div>}
+        >
           <PostList />
         </Suspense>
       </main>
     </div>
-  )
+  );
 }
-

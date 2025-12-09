@@ -1,71 +1,71 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { Post, getPosts, createPost, updatePost, deletePost } from '@/lib/api'
-import Link from 'next/link'
+import { useState, useEffect } from "react";
+import { Post, getPosts, createPost, updatePost, deletePost } from "@/lib/api";
+import Link from "next/link";
 
 export default function AdminPage() {
-  const [posts, setPosts] = useState<Post[]>([])
-  const [loading, setLoading] = useState(true)
-  const [editingPost, setEditingPost] = useState<Post | null>(null)
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [editingPost, setEditingPost] = useState<Post | null>(null);
   const [formData, setFormData] = useState({
-    title: '',
-    content: '',
-    slug: '',
-  })
+    title: "",
+    content: "",
+    slug: "",
+  });
 
   useEffect(() => {
-    loadPosts()
-  }, [])
+    loadPosts();
+  }, []);
 
   const loadPosts = async () => {
     try {
-      setLoading(true)
-      const data = await getPosts()
-      setPosts(data)
+      setLoading(true);
+      const data = await getPosts();
+      setPosts(data);
     } catch (error) {
-      console.error('Failed to load posts:', error)
+      console.error("Failed to load posts:", error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       if (editingPost) {
-        await updatePost(editingPost.id, formData)
+        await updatePost(editingPost.id, formData);
       } else {
-        await createPost(formData)
+        await createPost(formData);
       }
-      setFormData({ title: '', content: '', slug: '' })
-      setEditingPost(null)
-      loadPosts()
+      setFormData({ title: "", content: "", slug: "" });
+      setEditingPost(null);
+      loadPosts();
     } catch (error) {
-      console.error('Failed to save post:', error)
-      alert('保存に失敗しました')
+      console.error("Failed to save post:", error);
+      alert("保存に失敗しました");
     }
-  }
+  };
 
   const handleEdit = (post: Post) => {
-    setEditingPost(post)
+    setEditingPost(post);
     setFormData({
       title: post.title,
       content: post.content,
       slug: post.slug,
-    })
-  }
+    });
+  };
 
   const handleDelete = async (id: number) => {
-    if (!confirm('本当に削除しますか？')) return
+    if (!confirm("本当に削除しますか？")) return;
     try {
-      await deletePost(id)
-      loadPosts()
+      await deletePost(id);
+      loadPosts();
     } catch (error) {
-      console.error('Failed to delete post:', error)
-      alert('削除に失敗しました')
+      console.error("Failed to delete post:", error);
+      alert("削除に失敗しました");
     }
-  }
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-8 py-8">
@@ -86,12 +86,10 @@ export default function AdminPage() {
 
         <form onSubmit={handleSubmit} className="mb-8 bg-white p-6 rounded-lg shadow-sm">
           <h3 className="mb-4 text-lg font-semibold">
-            {editingPost ? '記事を編集' : '新規記事を作成'}
+            {editingPost ? "記事を編集" : "新規記事を作成"}
           </h3>
           <div className="mb-4">
-            <label className="block mb-2 font-medium">
-              タイトル
-            </label>
+            <label className="block mb-2 font-medium">タイトル</label>
             <input
               type="text"
               value={formData.title}
@@ -101,9 +99,7 @@ export default function AdminPage() {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 font-medium">
-              Slug
-            </label>
+            <label className="block mb-2 font-medium">Slug</label>
             <input
               type="text"
               value={formData.slug}
@@ -113,9 +109,7 @@ export default function AdminPage() {
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 font-medium">
-              コンテンツ
-            </label>
+            <label className="block mb-2 font-medium">コンテンツ</label>
             <textarea
               value={formData.content}
               onChange={(e) => setFormData({ ...formData, content: e.target.value })}
@@ -129,14 +123,14 @@ export default function AdminPage() {
               type="submit"
               className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors cursor-pointer"
             >
-              {editingPost ? '更新' : '作成'}
+              {editingPost ? "更新" : "作成"}
             </button>
             {editingPost && (
               <button
                 type="button"
                 onClick={() => {
-                  setEditingPost(null)
-                  setFormData({ title: '', content: '', slug: '' })
+                  setEditingPost(null);
+                  setFormData({ title: "", content: "", slug: "" });
                 }}
                 className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors cursor-pointer"
               >
@@ -149,25 +143,17 @@ export default function AdminPage() {
         <div>
           <h3 className="mb-4 text-xl font-semibold">記事一覧</h3>
           {loading ? (
-            <div className="text-center py-8 text-gray-600">
-              読み込み中...
-            </div>
+            <div className="text-center py-8 text-gray-600">読み込み中...</div>
           ) : posts.length === 0 ? (
-            <div className="text-center py-8 text-gray-600">
-              記事がありません
-            </div>
+            <div className="text-center py-8 text-gray-600">記事がありません</div>
           ) : (
             <div className="grid gap-6">
               {posts.map((post) => (
                 <div key={post.id} className="bg-white rounded-lg p-6 shadow-sm">
-                  <h2 className="text-xl mb-2 text-black font-semibold">
-                    {post.title}
-                  </h2>
-                  <p className="text-gray-600 mb-2">
-                    {post.content.substring(0, 100)}...
-                  </p>
+                  <h2 className="text-xl mb-2 text-black font-semibold">{post.title}</h2>
+                  <p className="text-gray-600 mb-2">{post.content.substring(0, 100)}...</p>
                   <div className="text-sm text-gray-400 mb-4">
-                    {new Date(post.createdAt).toLocaleDateString('ja-JP')}
+                    {new Date(post.createdAt).toLocaleDateString("ja-JP")}
                   </div>
                   <div className="mt-4 flex gap-2">
                     <button
@@ -190,6 +176,5 @@ export default function AdminPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }
-
