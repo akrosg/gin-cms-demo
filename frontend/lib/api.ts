@@ -1,4 +1,4 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api';
 
 export interface Post {
   id: number;
@@ -17,12 +17,12 @@ export async function getPosts(): Promise<Post[]> {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch posts");
+      throw new Error('Failed to fetch posts');
     }
 
     return res.json();
   } catch (error) {
-    console.error("Error fetching posts:", error);
+    console.error('Error fetching posts:', error);
     return [];
   }
 }
@@ -38,30 +38,30 @@ export async function getPost(slug: string): Promise<Post | null> {
       if (res.status === 404) {
         return null;
       }
-      throw new Error("Failed to fetch post");
+      throw new Error('Failed to fetch post');
     }
 
     return res.json();
   } catch (error) {
-    console.error("Error fetching post:", error);
+    console.error('Error fetching post:', error);
     return null;
   }
 }
 
 // 記事を作成
 export async function createPost(
-  data: Omit<Post, "id" | "createdAt" | "updatedAt">
+  data: Omit<Post, 'id' | 'createdAt' | 'updatedAt'>
 ): Promise<Post> {
   const res = await fetch(`${API_URL}/posts`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   });
 
   if (!res.ok) {
-    throw new Error("Failed to create post");
+    throw new Error('Failed to create post');
   }
 
   return res.json();
@@ -70,15 +70,15 @@ export async function createPost(
 // 記事を更新
 export async function updatePost(id: number, data: Partial<Post>): Promise<Post> {
   const res = await fetch(`${API_URL}/posts/${id}`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
   });
 
   if (!res.ok) {
-    throw new Error("Failed to update post");
+    throw new Error('Failed to update post');
   }
 
   return res.json();
@@ -87,10 +87,10 @@ export async function updatePost(id: number, data: Partial<Post>): Promise<Post>
 // 記事を削除
 export async function deletePost(id: number): Promise<void> {
   const res = await fetch(`${API_URL}/posts/${id}`, {
-    method: "DELETE",
+    method: 'DELETE',
   });
 
   if (!res.ok) {
-    throw new Error("Failed to delete post");
+    throw new Error('Failed to delete post');
   }
 }
