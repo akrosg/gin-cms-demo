@@ -1,28 +1,19 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className='max-w-6xl mx-auto px-8 py-8'>
-      <header className='bg-white border-b border-gray-200 py-4 mb-8'>
-        <h1 className='text-2xl font-semibold'>Gin CMS Demo</h1>
-        <nav className='flex gap-6 mt-2'>
-          <Link href='/' className='text-gray-600 hover:text-black transition-colors'>
-            ホーム
-          </Link>
-          <Link href='/admin' className='text-gray-600 hover:text-black transition-colors'>
-            管理画面
-          </Link>
-        </nav>
-      </header>
-      <main>
-        <div className='bg-white rounded-lg p-8 shadow-sm'>
-          <h1 className='text-4xl mb-4'>404 - ページが見つかりません</h1>
-          <p className='mb-4'>お探しのページは存在しません。</p>
-          <Link href='/' className='text-blue-600 hover:text-blue-800 transition-colors'>
-            ホームに戻る
-          </Link>
-        </div>
-      </main>
+    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+      <h1 className="text-9xl font-extrabold text-slate-100 mb-4">404</h1>
+      <h2 className="text-2xl font-bold text-slate-900 mb-4">Page Not Found</h2>
+      <p className="text-slate-500 max-w-md mb-8">
+        お探しのページは削除されたか、名前が変更されたか、一時的に利用できない可能性があります。
+      </p>
+      <Link
+        href="/"
+        className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-slate-900 hover:bg-slate-800 transition-all shadow-lg hover:shadow-xl"
+      >
+        ホームに戻る
+      </Link>
     </div>
   );
 }
