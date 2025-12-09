@@ -1,0 +1,22 @@
+{
+  "name": "gin-cms-demo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "bunx concurrently \"bun run dev:frontend\" \"bun run dev:backend\"",
+    "dev:frontend": "cd frontend && bun run dev",
+    "dev:backend": "cd backend && go run main.go",
+    "build": "cd frontend && bun run build",
+    "start": "cd frontend && bun run start",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "concurrently": "9.2.1"
+  },
+  "packageManager": "bun@1.1.0"
+}
